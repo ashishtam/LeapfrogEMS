@@ -1,0 +1,45 @@
+<?php echo $this->render('includes/header.phtml'); ?>
+
+<div id="left_column">
+   
+        <div class="text_area" align="justify">
+            <div class="title" style="text-align:center">Welcome to Leapfrog Employee Management System</div>
+            <center><img src="/images/front/mainpic.jpg" /></center>
+        </div>
+    
+</div>
+
+<div id="right_column">
+    <div class="section_box" align="justify">
+        <div class="subtitle">Members Area</div>
+        <table cellpadding="3" cellspacing="3" width="100%" border="0">
+            <tr>
+                <td>Username</td>
+                <td><input type="text" name="username" style="width: 104px;" /></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="text" name='password' style="width: 104px;"/></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input name="submit" type="button" value="Submit" class="buttonBlue" />
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="content">
+        <?php echo $this->layout()->content ?>
+        
+        </div><!--content ends here-->
+    <br />
+    <div class="section_box">
+        <div class="subtitle">For Support and Queries</div>
+        Email : <a href="mailto:">subashpoudyal@lftechnology.com</a>
+        Web : <a href="#" target="_blank">www.lftechnology.com</a>
+        Mobile : +977 9841158542
+    </div>
+</div>
+	
+<?php echo $this->render('includes/footer.phtml');?>        
+       
