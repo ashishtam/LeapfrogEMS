@@ -7,5 +7,5 @@
 
 class Employee_Model_DbTable_Profile extends Zend_Db_Table_Abstract
 {
-    public $_name = "";
+    public $_name = "CV_Info";
 }

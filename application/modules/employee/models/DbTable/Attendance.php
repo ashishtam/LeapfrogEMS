@@ -7,5 +7,5 @@
 
 class Employee_Model_DbTable_Attendance extends Zend_Db_Table_Abstract
 {
-    public $_name = "";
+    public $_name = "Attendance";
 }
