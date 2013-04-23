@@ -15,11 +15,38 @@ class Employee_AttendanceController extends Zend_Controller_Action
     public function checkInAction()
     {
         
+        $objAttendance = new Employee_Model_DbTable_Attendance();
+        
+        $form = new Employee_Form_Attendance();
+        $form->checkIn();
+        
+        $this->view->form = $form;
+        
+         if ($this->getRequest()->isPost()) {
+            if ($form->isValid($_POST)) {
+                $data = $form->getValues();
+                
+                $objAttendance->addAttendance($data);
+            }
+         }
     }
     
     public function checkOutAction()
     {
+        $objAttendance = new Employee_Model_DbTable_Attendance();
         
+        $form = new Employee_Form_Attendance();
+        $form->checkOut();
+        
+        $this->view->form = $form;
+        
+         if ($this->getRequest()->isPost()) {
+            if ($form->isValid($_POST)) {
+                $data = $form->getValues();
+                
+          
+            }
+         }
     }
     
     public function applyLeaveAction()
