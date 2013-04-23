@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 23, 2013 at 07:54 AM
+-- Generation Time: Apr 23, 2013 at 12:51 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -33,12 +33,23 @@ CREATE TABLE IF NOT EXISTS `Attendance` (
   `emp_id` int(11) NOT NULL,
   `date` date NOT NULL,
   `checkin_time` time NOT NULL,
-  `checkout_time` time NOT NULL,
-  `status` enum('ontime','late','','') NOT NULL,
-  `commments` longtext,
+  `checkout_time` time DEFAULT NULL,
+  `checkin_status` enum('On Time','Late') NOT NULL,
+  `checkout_status` enum('Early','On Time') DEFAULT NULL,
+  `checkin_comments` longtext,
+  `checkout_comments` longtext,
   PRIMARY KEY (`id`),
   KEY `emp_id` (`emp_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `Attendance`
+--
+
+INSERT INTO `Attendance` (`id`, `emp_id`, `date`, `checkin_time`, `checkout_time`, `checkin_status`, `checkout_status`, `checkin_comments`, `checkout_comments`) VALUES
+(1, 1, '2013-04-23', '08:12:05', NULL, 'On Time', NULL, NULL, NULL),
+(2, 1, '0000-00-00', '11:21:00', NULL, 'Late', NULL, 'I was sick', NULL),
+(3, 1, '2013-04-23', '11:32:40', NULL, 'Late', NULL, 'i was on date', NULL);
 
 -- --------------------------------------------------------
 
