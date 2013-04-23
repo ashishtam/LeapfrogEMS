@@ -21,9 +21,7 @@ class Employee_Model_DbTable_Employee extends Zend_Db_Table_Abstract
         $result = $this->fetchAll()->toArray();
         return $result;
     }
-    
-    
-    
+       
     /**
      * Add the records of new employee
      * @param $data-

@@ -13,7 +13,7 @@ class Employee_IndexController extends Zend_Controller_Action
         $objDesignation = new Employee_Model_DbTable_Designation();
         
         $employeeData = $objEmployee->getRecords();
-        
+        //echo '<pre>';        print_r($employeeData);die;
         $count = 0;
        foreach($employeeData as $value)
        {

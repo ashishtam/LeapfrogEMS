@@ -1,0 +1,29 @@
+<head>
+    <meta charset="utf-8" />
+    <title>LEMS | Apply for Leave</title>
+    <link rel="stylesheet" href="/jquery/jquery-ui.css" />
+    <script src="/jquery/jquery-1.9.1.js"></script>
+    <script src="/jquery/jquery-ui.js"></script>
+    <script>
+        $(function() {
+            $("#datepicker").datepicker();
+            $("#datepicker2").datepicker();
+            $( "#datepicker" ).datepicker( "option", "dateFormat", 'yy-mm-dd' );
+            $( "#datepicker2" ).datepicker( "option", "dateFormat", 'yy-mm-dd' );
+        });
+    </script>
+</head>
+    <form id="leavefrm" method="post" action="">
+        <table>
+            <thead><h3>Apply for Leave</h3></thead>
+                 <tr><td>From date: </td>
+                    <td><input type="text" id="datepicker" required name="from_date" /></td>
+                </tr>
+                <tr><td>To date:</td>
+                    <td><input type="text" id="datepicker2" required name="to_date"/></td>   
+                </tr>
+                <tr><td>Reason:</td><td><textarea rows="3" cols="30" name="reason" required></textarea></td></tr>
+            <tr><td colspan="2" align="center"><input type="submit" name="submit" value="Apply"></td></tr>
+        </table>
+    </form>
+    
