@@ -26,7 +26,7 @@ class Employee_AttendanceController extends Zend_Controller_Action
             if ($form->isValid($_POST)) {
                 $data = $form->getValues();
                 
-                $objAttendance->addAttendance($data);
+                $objAttendance->addAttendance($data, '1');
             }
          }
     }
@@ -43,6 +43,8 @@ class Employee_AttendanceController extends Zend_Controller_Action
          if ($this->getRequest()->isPost()) {
             if ($form->isValid($_POST)) {
                 $data = $form->getValues();
+                
+                $objAttendance->updateAttendance($data, '3', '1');
                 
           
             }
