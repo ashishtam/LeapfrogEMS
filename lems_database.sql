@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 24, 2013 at 02:58 PM
+-- Generation Time: Apr 24, 2013 at 10:20 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -21,6 +21,46 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE `lems` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `lems`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Actions`
+--
+
+CREATE TABLE IF NOT EXISTS `Actions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `resource_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `resource_id` (`resource_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+
+--
+-- Dumping data for table `Actions`
+--
+
+INSERT INTO `Actions` (`id`, `name`, `resource_id`) VALUES
+(1, 'auto', 1),
+(2, 'index', 2),
+(3, 'addUser', 2),
+(4, 'editUser', 2),
+(5, 'deleteUser', 2),
+(6, 'index', 3),
+(7, 'addPermission', 3),
+(8, 'editPermission', 3),
+(9, 'deletePermission', 3),
+(10, 'index', 4),
+(11, 'profile', 4),
+(12, 'index', 5),
+(13, 'checkIn', 5),
+(14, 'checkOut', 5),
+(15, 'applyLeave', 5),
+(16, 'index', 6),
+(17, 'about', 6),
+(18, 'logout', 6),
+(19, 'login', 6),
+(20, 'index', 7);
 
 -- --------------------------------------------------------
 
@@ -149,23 +189,24 @@ CREATE TABLE IF NOT EXISTS `Permissions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_id` int(11) NOT NULL,
   `resource_id` int(11) NOT NULL,
-  `permitted_action` varchar(255) NOT NULL,
+  `action_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `resource_id` (`resource_id`),
-  KEY `role_id` (`role_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+  KEY `role_id` (`role_id`),
+  KEY `action_id` (`action_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `Permissions`
 --
 
-INSERT INTO `Permissions` (`id`, `role_id`, `resource_id`, `permitted_action`) VALUES
-(1, 3, 4, 'index'),
-(2, 3, 5, 'check-in'),
-(3, 3, 5, 'check-out'),
-(4, 3, 5, 'apply-leave'),
-(5, 2, 1, 'auto'),
-(6, 2, 2, 'addUser');
+INSERT INTO `Permissions` (`id`, `role_id`, `resource_id`, `action_id`) VALUES
+(1, 3, 4, 10),
+(2, 3, 5, 13),
+(3, 3, 5, 14),
+(4, 3, 5, 15),
+(5, 2, 1, 1),
+(7, 2, 2, 3);
 
 -- --------------------------------------------------------
 
@@ -177,8 +218,9 @@ CREATE TABLE IF NOT EXISTS `Resources` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `Resources`
@@ -190,7 +232,8 @@ INSERT INTO `Resources` (`id`, `name`, `description`) VALUES
 (3, 'admin_permission', 'Permission Controller - Admin Module'),
 (4, 'employee_index', 'Index Controller - Employee Module'),
 (5, 'employee_attendance', 'Attendance Controller - Employee Module'),
-(6, 'front_index', 'Index Controller - Front Module');
+(6, 'front_index', 'Index Controller - Front Module'),
+(7, 'front_error', 'Error Controller - Front Module');
 
 -- --------------------------------------------------------
 
@@ -216,6 +259,12 @@ INSERT INTO `Roles` (`id`, `name`) VALUES
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `Actions`
+--
+ALTER TABLE `Actions`
+  ADD CONSTRAINT `Actions_ibfk_1` FOREIGN KEY (`resource_id`) REFERENCES `Resources` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `Attendance`
@@ -246,6 +295,7 @@ ALTER TABLE `Leave`
 -- Constraints for table `Permissions`
 --
 ALTER TABLE `Permissions`
+  ADD CONSTRAINT `Permissions_ibfk_3` FOREIGN KEY (`action_id`) REFERENCES `Actions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `Permissions_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `Roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `Permissions_ibfk_2` FOREIGN KEY (`resource_id`) REFERENCES `Resources` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 

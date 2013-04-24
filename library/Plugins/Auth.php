@@ -76,11 +76,32 @@ class Plugins_Auth extends Zend_Controller_Plugin_Abstract {
 ////                                
 //                 }
 
-                echo $auth->getIdentity()->role_id;
+//                echo $auth->getIdentity()->role_id;
                 
-                     $result =  $acl->isAllowed($auth->getIdentity()->role_id,$resource, $action);
+                $actionId = $this->getActionId($resource, $action);
+                
+                    $result =  $acl->isAllowed($auth->getIdentity()->role_id,$resource, $actionId);
+                     
                      return $result;
 	}
+        
+        
+        private function getActionId($resource, $action)
+        {
+            $objActions = new Admin_Model_DbTable_Actions();
+            $objResources = new Admin_Model_DbTable_Resources();
+            
+            
+//            echo $resource."<br>";
+            $resourceId = $objResources->getResourceId($resource);
+            
+            $actionId = $objActions->getActionId($resourceId, $action);
+            
+            //print_r($actionId[0]);
+            if($actionId)
+                return($actionId[0]['id']);
+        }
+        
 }
 
 ?>

@@ -1,0 +1,71 @@
+
+<?php
+    $roles = $this->dataRoles;
+    $resources = $this->dataResources;
+?>
+
+<h2>Assign Permissions</h2>
+
+<form method="post" action="localhost" id="permissions">
+    <div class="roles">
+        <select id="roles" name="roles" style="width: 300px;" >
+            <option value="">Select Roles</option>
+
+             <?php        
+                foreach ($roles as $value)
+                {
+                       echo "<option value='".$value['id']."'>".$value['name']."</option>";
+                }
+
+            ?>
+        </select>
+    </div>
+    <br>
+    <div class="resources">
+        <select name="resources" style="width: 300px;" id="resources">
+            <option value="">Select Resources</option>
+             <?php        
+                foreach ($resources as $value)
+                {
+                    echo "<option value='".$value['id']."'>".$value['description']."</option>";
+                }
+            ?>
+        </select>
+
+    </div>
+    <br>
+    <div class="actions">
+
+
+    </div>
+    <br>
+    <div class="submit">
+         <input type="button" name="submit" value="Assign Permission" class="button-form white submit"/>
+    </div>
+    
+</form>
+
+    
+  <script src="/jquery/jquery-1.9.1.js"></script>
+    <script src="/jquery/jquery-ui.js"></script>
+    <script>
+        $(function() {
+            $('#resources').attr('disabled',true);
+            $('.class').hide();
+            $('.submit').hide();
+            
+            //When Roles select options is changed, resources is enabled
+            $('#roles').change(function() {
+                $('#resources').removeAttr('disabled');
+            });
+            
+            
+            //When Resources select options is changed, actions are shown
+            $('#resources').change(function()
+            {
+
+            });
+            
+            
+        });
+    </script>

@@ -11,9 +11,8 @@ class Helper_Asset extends Zend_Controller_Action_Helper_Abstract
     {
         $module_dir = $this->getFrontController()->getControllerDirectory();
         $resources = array();
-
-      //  print_r($module_dir);
-        
+   
+   
         unset($module_dir['default']);
         
         foreach ($module_dir as $dir => $dirpath) {
@@ -47,6 +46,7 @@ class Helper_Asset extends Zend_Controller_Action_Helper_Abstract
 
         }
         ksort($resources);
+        
         return $resources;
     }
 }

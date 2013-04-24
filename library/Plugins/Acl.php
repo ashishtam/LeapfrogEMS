@@ -72,7 +72,7 @@ class Plugins_Acl extends Zend_Acl
                 {
                    
                    try{
-                       $this->allow($value['role_id'], $value['name'], $value['permitted_action']);
+                       $this->allow($value['role_id'], $value['name'], $value['action_id']);
                    }
                     catch (Exception $e)
                     {

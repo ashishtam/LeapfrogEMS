@@ -6,6 +6,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     {
         $autoloader = Zend_Loader_Autoloader::getInstance();
         $autoloader->registerNamespace('Plugins_');
+        $autoloader->registerNamespace('Helper_');
     }
     
     protected function _initPlugins()
@@ -22,5 +23,11 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         // print_r($router);die;
         $router->addConfig($config, 'routes');
     }
+    
+     protected function _initActionHelper()
+    {
+        Zend_Controller_Action_HelperBroker::addHelper(new Helper_Asset());
+    }
+    
       
 }
