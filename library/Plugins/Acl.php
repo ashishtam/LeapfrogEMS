@@ -35,9 +35,9 @@ class Plugins_Acl extends Zend_Acl
 
             $module = '';
             foreach ($resources as $key=>$value)
-                    {
+            {
                 if ($value['name'])
-                            {
+                {
                     $arr_resource = explode("_",$value['name']);
 
                     if($module != $arr_resource[0])
@@ -72,12 +72,12 @@ class Plugins_Acl extends Zend_Acl
                 {
                    
                    try{
-                   $this->allow($value['role_id'], $value['name'], $value['permission']);
+                       $this->allow($value['role_id'], $value['name'], $value['permitted_action']);
                    }
-                     catch (Exception $e)
-                     {
-                         echo $e->getMessage();
-                     }
+                    catch (Exception $e)
+                    {
+                        echo $e->getMessage();
+                    }
                }
                         
         }

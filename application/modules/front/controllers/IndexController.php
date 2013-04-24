@@ -16,7 +16,19 @@ Class Front_IndexController extends Zend_Controller_Action
         
     }
     
-     public function loginAction()
+    public function logoutAction()
+    {
+        $auth = Zend_Auth::getInstance();
+        
+        if($auth->hasIdentity())
+            $auth->clearIdentity();
+        
+        
+        $this->_redirect('front/index/login');
+        
+    }
+    
+    public function loginAction()
     {
         //Zend_Layout::getMvcInstance()->setLayout('layout');
         $form = new Front_Form_LoginForm;

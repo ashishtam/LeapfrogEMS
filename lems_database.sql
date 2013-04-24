@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 24, 2013 at 11:48 AM
+-- Generation Time: Apr 24, 2013 at 02:58 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -118,10 +118,10 @@ INSERT INTO `Employee` (`id`, `role_id`, `full_name`, `email_id`, `password`, `c
 (1, 1, 'ashish tamrakar', 'ashishtamrakar@gmail.com', '7b69ad8a8999d4ca7c42b8a729fb0ffd', '9841866792', 1),
 (2, 3, 'ojash dahal', 'ojashdahal@lftechnology.com', 'a5b4c15152e100c43c6dfd97bb45dd3f', '9841023233', 1),
 (3, 3, 'shiv kumar sah', 'shivkumarsha@lftechnology.com', '671fc86500ae5dd534f859e4483354fe', '9841123456', 1),
-(4, 1, 'kiran regmi', 'kiranregmi@lftechnology.com', 'b1a5b64256e27fa5ae76d62b95209ab3', '9841123456', 2),
-(6, 1, 'subash poudyal', 'subashpoudyal@lftechnology.com', 'b4caefa3d450d0e36e183160d17aba24', '9841123456', 1),
-(7, 1, 'Alina Shakya', 'alinashakya@lftechnology.com', '914a23f72f590809d3fe431573ecb71f', '9841123456', 1),
-(8, 1, 'Sudip Pudasaini', 'sudippudasaini@lftechnology.com', '550bbf0991fd493d1afaa2bdd246af6a', '9841123456', 1);
+(4, 2, 'kiran regmi', 'kiranregmi@lftechnology.com', 'b1a5b64256e27fa5ae76d62b95209ab3', '9841123456', 2),
+(6, 3, 'subash poudyal', 'subashpoudyal@lftechnology.com', 'b4caefa3d450d0e36e183160d17aba24', '9841123456', 1),
+(7, 3, 'Alina Shakya', 'alinashakya@lftechnology.com', '914a23f72f590809d3fe431573ecb71f', '9841123456', 1),
+(8, 3, 'Sudip Pudasaini', 'sudippudasaini@lftechnology.com', '550bbf0991fd493d1afaa2bdd246af6a', '9841123456', 1);
 
 -- --------------------------------------------------------
 
@@ -153,7 +153,19 @@ CREATE TABLE IF NOT EXISTS `Permissions` (
   PRIMARY KEY (`id`),
   KEY `resource_id` (`resource_id`),
   KEY `role_id` (`role_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `Permissions`
+--
+
+INSERT INTO `Permissions` (`id`, `role_id`, `resource_id`, `permitted_action`) VALUES
+(1, 3, 4, 'index'),
+(2, 3, 5, 'check-in'),
+(3, 3, 5, 'check-out'),
+(4, 3, 5, 'apply-leave'),
+(5, 2, 1, 'auto'),
+(6, 2, 2, 'addUser');
 
 -- --------------------------------------------------------
 

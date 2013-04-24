@@ -12,7 +12,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     {
         $front = Zend_Controller_Front::getInstance();
         $front->registerPlugin(new Plugins_SelectLayout());
-        //$front->registerPlugin(new Plugins_Auth());
+        $front->registerPlugin(new Plugins_Auth());
     }
     
     protected function _initRoutes()
