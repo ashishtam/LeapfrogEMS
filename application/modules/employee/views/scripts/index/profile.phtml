@@ -1,0 +1,20 @@
+<?php  echo $this->headScript()->appendFile('/ckeditor/ckeditor.js'); 
+
+    //display the form
+echo $this->form;
+ 
+ ?>
+<!-- to embed ckeditor in the textarea whose id is 'pagecontent'-->
+<script type="text/javascript">
+    
+        CKEDITOR.replace('info',{
+            filebrowserBrowseUrl : '/ckfinder/ckfinder.html',
+            filebrowserImageBrowseUrl : '/ckfinder/ckfinder.html?type=Images',
+            filebrowserFlashBrowseUrl : '/ckfinder/ckfinder.html?type=Flash',
+            filebrowserUploadUrl : '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+            filebrowserImageUploadUrl : '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+            filebrowserFlashUploadUrl : '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
+            filebrowserWindowWidth : '500',
+            filebrowserWindowHeight : '300'});
+    
+</script>
