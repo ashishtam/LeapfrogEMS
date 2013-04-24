@@ -1,7 +1,7 @@
 <head>
     <meta charset="utf-8" />
-    <title>LEMS | Apply for Leave</title>
-    <link rel="stylesheet" href="/jquery/jquery-ui.css" />
+    <title>Leapfrog EMS - Apply for Leave</title>
+    <link rel="stylesheet" href="/css/jquery-ui.css" />
     <script src="/jquery/jquery-1.9.1.js"></script>
     <script src="/jquery/jquery-ui.js"></script>
     <script>
@@ -13,17 +13,17 @@
         });
     </script>
 </head>
-    <form id="leavefrm" method="post" action="">
-        <table>
-            <thead><h3>Apply for Leave</h3></thead>
-                 <tr><td>From date: </td>
-                    <td><input type="text" id="datepicker" required name="from_date" /></td>
-                </tr>
-                <tr><td>To date:</td>
-                    <td><input type="text" id="datepicker2" required name="to_date"/></td>   
-                </tr>
-                <tr><td>Reason:</td><td><textarea rows="3" cols="30" name="reason" required></textarea></td></tr>
-            <tr><td colspan="2" align="center"><input type="submit" name="submit" value="Apply"></td></tr>
-        </table>
+    <form method="post" action="">
+      <h1>Apply for Leave</h1>
+      <label>From date: </label><br>
+      <input type="text" id="datepicker" required name="from_date" /><br>
+            
+      <label>To date:</label><br>
+      <input type="text" id="datepicker2" required name="to_date"/><br>
+      
+      
+      <label>Reason:</label><br>
+      <textarea rows="3" cols="30" name="reason" required></textarea><br>
+            <input class="button-form white" type="submit" name="submit" value="Apply">
     </form>
     

@@ -34,7 +34,7 @@ Class Front_IndexController extends Zend_Controller_Action
 
                     // We're authenticated! Redirect to the home page
 
-                    $this->_helper->redirector('about', 'index');
+                    $this->_helper->redirector('index', 'index','employee');
 
                 }
             else {

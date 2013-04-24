@@ -23,7 +23,7 @@ class Front_Form_LoginForm extends Zend_Form {
        
 // create submit button
         $submit = new Zend_Form_Element_Submit(
-                'submit', array('class' => 'submit'));
+                'submit', array('class' => 'button-form white'));
         $submit->setLabel('Login');
 // attach elements to form
         $this->addElement($email_id)

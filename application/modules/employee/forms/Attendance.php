@@ -69,13 +69,14 @@ class Employee_Form_Attendance extends Zend_Form
         
         $reason->setLabel('Reason for late:')
                 ->setRequired(true)
-                ->setAttrib('style', 'width: 400px;height:300px;border-collapse:collapse; border: 1px solid gray;border-radius:5px;line-height:20px;')
+                ->setAttrib('style', 'width: 400px;height:200px;border-collapse:collapse; border: 1px solid gray;border-radius:5px;line-height:20px;')
                 ->setFilters(array('StringTrim'));
         
         //add an Submit element
         $submit = new Zend_Form_Element_Submit('submit');
         
         $submit->setLabel('Check In')
+                ->setAttrib('class', 'button-form white')
                 ->setIgnore(true)
                 ->setRequired(true);
         
@@ -149,13 +150,14 @@ class Employee_Form_Attendance extends Zend_Form
         
         $reason->setLabel('Reason for early leave:')
                 ->setRequired(true)
-                ->setAttrib('style', 'width: 400px;height:300px;border-collapse:collapse; border: 1px solid gray;border-radius:5px;line-height:20px;')
+                ->setAttrib('style', 'width: 400px;height:200px;border-collapse:collapse; border: 1px solid gray;border-radius:5px;line-height:20px;')
                 ->setFilters(array('StringTrim'));
         
          //add an Submit element
         $submit = new Zend_Form_Element_Submit('submit');
         
         $submit->setLabel('Check Out')
+                ->setAttrib('class', 'button-form white')
                 ->setIgnore(true)
                 ->setRequired(true);
         
@@ -195,7 +197,7 @@ class Employee_Form_Attendance extends Zend_Form
 //            echo "Late";
 
         
-        $currentTimestamp =  new Zend_Date($currentDate  . " " . $currentTime);;
+        $currentTimestamp =  new Zend_Date($currentDate  . " " . $currentTime);
         $thresholdTimestamp = new Zend_Date($currentDate . " " . $thresholdTime);
      
              

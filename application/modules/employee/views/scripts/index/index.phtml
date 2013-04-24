@@ -1,31 +1,31 @@
+<h1>Employee Contacts</h1>
+
+<p>
 <?php $data = $this->employeeRecords; ?>
-<div id="content">
-    
-    <div>
-        <table>
-            <tr>
-                <td>Id</td>
-                <td>Full Name</td>
-                <td>Designation</td>
-                <td>Email Id</td>
-                <td>Contact</td>                
-            </tr>
-<?php
+
+    <table class='table-contacts'>
+        <tr>
+            <td>Id</td>
+            <td>Full Name</td>
+            <td>Designation</td>
+            <td>Email Id</td>
+            <td>Contact</td>                
+        </tr>
+    <?php
 
     foreach($data as $key=>$value)
     {
-           echo"<tr>";
-           echo"<td>".$value['id']."</td>
-                <td>".$value['full_name']."</td>
-                <td>".$value['designation']."</td>
-                <td>".$value['email_id']."</td>
-                <td>".$value['contact']."</td>";
-           echo "</tr>";
+       echo"<tr>";
+       echo"<td>".$value['id']."</td>
+            <td>".$value['full_name']."</td>
+            <td>".$value['designation']."</td>
+            <td>".$value['email_id']."</td>
+            <td>".$value['contact']."</td>";
+       echo "</tr>";
     }
-//    echo "<pre>";
-//    print_r();
-//    echo "</pre>";
-?>
-        </table>
-    </div>
-</div>
+    //    echo "<pre>";
+    //    print_r();
+    //    echo "</pre>";
+    ?>
+    </table>
+</p>

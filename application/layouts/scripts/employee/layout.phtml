@@ -10,8 +10,9 @@
 	<div id="title">
 		<div id="logo">
 			<img src="/images/style/logo.png" alt="logo">
+                        EMS
 		</div>
-		    
+    
 
 	</div>
 </div>	
@@ -22,15 +23,16 @@
         <div id="nav">
             <ul>
               <li class="first">
-               <a href="#">Home</a>
+               <a href="#">Employees</a>
 
               </li>
               <li>
-                <a href="#">Login</a>
+                <a href="#">Profile</a>
               </li>
               <li>
-                <a href="#">About</a>
+                <a href="#">Attendance</a>
                </li>
+                
 
 
             </ul>
@@ -40,27 +42,29 @@
         <!-- end-->	
 </div>
    
-<div id="container-contentother">
-    <div id="inner-container">
+<div id="inner-container">
         <div class="nav-menu">
             <ul>
-            <li><a href="#intro">Introduction</a></li>
-            <li><a href="#vision">Vision</a></li>
-            <li><a href="#mission">Mission</a></li>
-            <li><a href="#objectives">Objectives</a></li>
-            <li><a href="#strategies">Strategies</a></li>
+            <li><a href="<?php echo $this->baseUrl('/employee/index/index');?>">Employee Contacts</a></li>
+            <li><a href="#">Show Profile</a></li>
+            <li><a href="#">Attendance History</a></li>
+            <li><a href="<?php echo $this->baseUrl('/employee/attendance/check-in');?>">Check In</a></li>
+            <li><a href="<?php echo $this->baseUrl('/employee/attendance/check-out');?>">Check Out</a></li>
+            <li><a href="<?php echo $this->baseUrl('/employee/attendance/apply-leave');?>">Apply For Leave</a></li>
+            
             </ul>
         </div>
          
-        <div class="content">
+        <div class="main-content">
             
         <?php echo $this->layout()->content; ?>
         </div>
-    </div>
+ 
 </div>
+<div style="clear:both;"></div>
     
 
-<div id="copyright">(C) Leapfrog Technology College, a college wing of Leapfrog Technology Inc.</div>
+<div id="copyright">&copy; Leapfrog Technology Inc.</div>
 
 
 </body>
