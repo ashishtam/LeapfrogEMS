@@ -1,28 +1,39 @@
-<?php echo $this->render('includes/header.phtml'); ?>
-
-<div id="left_column">
-   
-        <div class="text_area" align="justify">
-            <div class="title" style="text-align:center">Welcome to Leapfrog Employee Management System</div>
-            <center><img src="/images/front/mainpic.jpg" /></center>
-        </div>
-    
-</div>
-
-<div id="right_column">
-   
-    <div id="content">
-        <?php echo $this->layout()->content ?>
-        
-        </div><!--content ends here-->
-    <br />
-    <div class="section_box">
-        <div class="subtitle">For Support and Queries</div>
-        Email : <a href="mailto:">subashpoudyal@lftechnology.com</a>
-        Web : <a href="#" target="_blank">www.lftechnology.com</a>
-        Mobile : +977 9841158542
-    </div>
-</div>
-	
-<?php echo $this->render('includes/footer.phtml');?>        
-       
+<html>
+    <title>LEMS | Front</title>
+    <?php echo $this->headLink()->prependStylesheet($this->baseUrl('/css/front.css')); ?> 
+    <body>
+        <div class="main">
+            <div id="header">
+                <div id="menu_main">
+                  <ul id="menu">
+                      <li><a href="#">Home</a></li>
+                      <li>
+                          <a href="#">Categories</a>
+                          <ul>
+                              <li><a href="#">CSS</a></li>
+                              <li><a href="#">Graphic design</a></li>
+                              <li><a href="#">Development tools</a></li>
+                              <li><a href="#">Web design</a></li>
+                          </ul>
+                      </li>
+                      <li><a href="#">Work</a></li>
+                      <li><a href="#">About</a></li>
+                      <li><a href="#">Contact</a></li>
+                  </ul>  
+                </div>
+                
+            </div>
+            <div class="bodypart">
+                <div id="leftbody">left body</div>
+                <div id="bodycontent">
+                    <?php echo $this->layout()->content; ?>
+                </div><!--end of bodycontent-->
+                <div id="rightbody">right body</div>
+            </div><!--end of bodypart-->
+            <div id="clear"></div>
+            <div id="footer">
+                &COPY; Copyright 2013, All Rights Reserved
+            </div><!--end of footer-->
+        </div><!--end of main-->
+    </body>
+</html> 
