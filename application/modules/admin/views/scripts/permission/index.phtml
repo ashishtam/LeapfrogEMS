@@ -111,45 +111,42 @@
                     var resourceId = $('#resources').val();
                     var count = 0;
                     
+   
                     $.each(actionList, function(key,value){
-                        if($('#'+value['name']).is(":checked"))
+                        
+                        if($('#' + value['name']).is(":checked"))
                         {
-                            actions[count++] = value['name'];
+                            actions[count++] = value['id'];
                         }
                   
                          
                     });
                     
-                    alert(roleId + " " + resourceId);
+                    
+                    
+                   // alert(roleId + " " + resourceId);
                     
                     console.log(actions);
 
-
-//                    for (i = 0; i < countActions; i++) {
-//                        if ($('#actionList-' + i).is(":checked")) {
-//                            actions[i] = $('#actionList-' + i).attr('value');
-//
-//                        }
-//                    }
-
-            
+               
                     $.ajax({
                         type: 'post',
-                        data: {actionList: actions, roleId: roleId, resourcesId: resourceId},
+                        data: {actionList: actions, roleId: roleId, resourceId: resourceId},
                         url: '<?php echo $this->baseUrl(); ?>/admin/permission/edit-permission',
-                        dataType: 'json',
+                        dataType: 'text',
                         cache: false,
                         success: function(data) {
 
-                            var check = data.check;
-                            if (check === 1) {
-                                alert('success');
-                            }
-                            else {
-                                alert('failure');
-                            }
+                           // alert(data);
+//                            var check = data.check;
+//                            if (check === 1) {
+//                                alert('success');
+//                            }
+//                            else {
+//                                alert('failure');
+//                            }
                             
-                            return false;
+                     //       return false;
                         }
                     });
 

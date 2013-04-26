@@ -29,4 +29,20 @@ class Admin_Model_DbTable_Permissions extends Zend_Db_Table_Abstract
             echo $e->getMessage();
         }
     }
+    
+    
+    public function deletePermission($roleId, $resourceId, $actionId)
+    {
+        try 
+        {
+            $result = $this->delete('role_id='.$roleId." and resource_id=".$resourceId." and action_id=".$actionId);
+            return $return;
+        
+        }
+        catch(Exception $e)
+        {
+            echo $e->getMessage();
+        }
+    }
+    
 }
