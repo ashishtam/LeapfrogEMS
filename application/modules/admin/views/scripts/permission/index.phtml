@@ -51,7 +51,8 @@
     <script>
         $(function() {
             $('#resources').attr('disabled',true);
-            $('.class').hide();
+           
+            $('.actions').hide();
             $('.submit').hide();
             
             //When Roles select options is changed, resources is enabled
@@ -63,6 +64,38 @@
             //When Resources select options is changed, actions are shown
             $('#resources').change(function()
             {
+                var resourceId = $('#resources').val();
+                var roleId = $('#roles').val();
+                
+                $('.actions').empty();
+                $.ajax({
+                type: 'post',
+                data: {resource: resourceId, role_id: roleId},
+                url: '<?php echo $this->baseUrl(); ?>/admin/permission/getlist/',
+                dataType: 'json',
+                success: function(data) {
+                    
+                    var actionList = data.actionList;
+                    var permittedActionList = data.permittedActionName;
+                    
+                    $('.actions').show();
+                    $('.submit').show();
+                    
+                    $.each(actionList, function(key,value){
+                            $('.actions').append('<ul><input type="checkbox" id ='+value['id'] + ' name="' + value['name'] + '" value="' + value['id'] + '" />' + value['name'] + '</ul>');
+                    
+                                 $.each()(permittedActionList, function(keyPermitted, valuePermitted){
+                                     if(value['name'] == valuePermitted)
+                                         $('#' + value['id']).attr('checked','checked');
+                                 });
+                    });
+                    
+                    
+               
+            
+                   }
+                });
+                 
 
             });
             

@@ -10,6 +10,14 @@ class Admin_Model_DbTable_Actions extends Zend_Db_Table_Abstract
     public $_name = "Actions";
     
     
+    
+    public function getActionsbyResourceId($resourceId)
+    {
+        $result = $this->fetchAll('resource_id='.$resourceId)->toArray();
+        return $result;
+    }
+    
+    
     /**
      * Inserts row in the table Actions
      * @param type $data Requires data as fields in table Actions
@@ -66,5 +74,25 @@ class Admin_Model_DbTable_Actions extends Zend_Db_Table_Abstract
         {
             echo $e->getMessage();
         }
+    }
+    
+    
+    public function getActionNamebyId($actionId)
+    {
+        try
+        {
+            foreach($actionId as $value)
+            {
+
+                $action = $this->fetchRow('id ='.$value)->toArray();
+                $actionName[] = $action['name'];
+            }
+        }
+        catch(Exception $e)
+        {
+            echo $e->getMessage();
+        }
+        
+        return $actionName;
     }
 }
