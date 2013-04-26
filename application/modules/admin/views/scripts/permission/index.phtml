@@ -50,6 +50,9 @@
     <script src="/jquery/jquery-ui.js"></script>
     <script>
         $(function() {
+            
+            var actionList;
+            
             $('#resources').attr('disabled',true);
            
             $('.actions').hide();
@@ -71,33 +74,92 @@
                 $.ajax({
                 type: 'post',
                 data: {resource: resourceId, role_id: roleId},
-                url: '<?php echo $this->baseUrl(); ?>/admin/permission/getlist/',
+                url: '<?php echo $this->baseUrl(); ?>/admin/permission/getlist',
                 dataType: 'json',
                 success: function(data) {
                     
-                    var actionList = data.actionList;
-                    var permittedActionList = data.permittedActionName;
+                 
+                    actionList = data.actionList;
+                    var permittedActionList = data.actionName;
+                    var count = data.count;
                     
                     $('.actions').show();
                     $('.submit').show();
-                    
+             
+                      //exit();
                     $.each(actionList, function(key,value){
-                            $('.actions').append('<ul><input type="checkbox" id ='+value['id'] + ' name="' + value['name'] + '" value="' + value['id'] + '" />' + value['name'] + '</ul>');
-                    
-                                 $.each()(permittedActionList, function(keyPermitted, valuePermitted){
-                                     if(value['name'] == valuePermitted)
-                                         $('#' + value['id']).attr('checked','checked');
-                                 });
+                            $('.actions').append('<ul><input type="checkbox" id ='+value['name'] + ' name="' + value['name'] + '" value="' + value['id'] + '" />' + value['name'] + '</ul>');
+                  
+                         
                     });
+                    
+                    for(i=0;i<count;i++)
+                    {
+                        $('#' + permittedActionList[i]['name']).attr('checked', true);
+                    }
                     
                     
                
             
                    }
                 });
+                
+                
+                $('.submit').click(function() {
+                    var actions = new Array();
+                    var roleId = $('#roles').val();
+                    var resourceId = $('#resources').val();
+                    var count = 0;
+                    
+                    $.each(actionList, function(key,value){
+                        if($('#'+value['name']).is(":checked"))
+                        {
+                            actions[count++] = value['name'];
+                        }
+                  
+                         
+                    });
+                    
+                    alert(roleId + " " + resourceId);
+                    
+                    console.log(actions);
+
+
+//                    for (i = 0; i < countActions; i++) {
+//                        if ($('#actionList-' + i).is(":checked")) {
+//                            actions[i] = $('#actionList-' + i).attr('value');
+//
+//                        }
+//                    }
+
+            
+                    $.ajax({
+                        type: 'post',
+                        data: {actionList: actions, roleId: roleId, resourcesId: resourceId},
+                        url: '<?php echo $this->baseUrl(); ?>/admin/permission/edit-permission',
+                        dataType: 'json',
+                        cache: false,
+                        success: function(data) {
+
+                            var check = data.check;
+                            if (check === 1) {
+                                alert('success');
+                            }
+                            else {
+                                alert('failure');
+                            }
+                            
+                            return false;
+                        }
+                    });
+
+                });
                  
 
             });
+            
+            
+            
             
             
         });

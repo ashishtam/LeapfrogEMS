@@ -85,7 +85,7 @@ class Admin_Model_DbTable_Actions extends Zend_Db_Table_Abstract
             {
 
                 $action = $this->fetchRow('id ='.$value)->toArray();
-                $actionName[] = $action['name'];
+                $actionName[]['name'] = $action['name'];
             }
         }
         catch(Exception $e)

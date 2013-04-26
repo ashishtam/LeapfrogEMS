@@ -11,6 +11,7 @@ class Admin_Model_DbTable_Permissions extends Zend_Db_Table_Abstract
     
     public function getActionId($resourceId, $roleId)
     {
+        $actionId = array();
         try
         {
             $query = $this->fetchAll('resource_id = '.$resourceId.' AND role_id='.$roleId)->toArray();
