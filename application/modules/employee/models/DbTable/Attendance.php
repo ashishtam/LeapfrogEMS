@@ -8,6 +8,23 @@
 class Employee_Model_DbTable_Attendance extends Zend_Db_Table_Abstract
 {
     public $_name = "Attendance";
+    
+    public function getAttendance($empId)
+    {
+        try
+        {
+            $result = $this->fetchAll($this->select()
+                                            ->where('emp_id='.$empId)
+                                            ->order('date DESC'))->toArray();
+            return $result;
+        }
+        catch(Exception $e)
+        {
+            echo $e->getMessage();
+        }
+    }
+    
+    
     public function addAttendance($data , $empId)
     {
         try
@@ -37,4 +54,22 @@ class Employee_Model_DbTable_Attendance extends Zend_Db_Table_Abstract
             echo $e->getMessage();
         }
     } 
+    
+    
+    public function getAttendanceIdByDate($empId)
+    {
+        $today = new Zend_Date();
+        $currentDate = $today->get('Y-MM-d');
+     
+        try
+        {
+            $result = $this->fetchRow("date='".$currentDate."' AND emp_id=".$empId)->toArray();
+
+            return $result['id'];
+        }
+        catch(Exception $e)
+        {
+            echo $e->getMessage();
+        }
+    }
 }

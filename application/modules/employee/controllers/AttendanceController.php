@@ -7,13 +7,39 @@
 
 class Employee_AttendanceController extends Zend_Controller_Action
 {
+    private $auth;
+    private $empId;
+    
+    public function init()
+    {
+        $this->auth = Zend_Auth::getInstance();
+        $this->empId = $this->auth->getIdentity()->id;
+    }
+    
     public function indexAction()
     {
+    
+    }
+    
+    public function historyAction()
+    {
+        $auth = Zend_Auth::getInstance();
+        
+        $objAttendance = new Employee_Model_DbTable_Attendance();
+        
+        
+        $dataAttendance = $objAttendance->getAttendance($auth->getIdentity()->id);
+        
+//        print_r($dataAttendance);
+        
+        $this->view->data = $dataAttendance;
         
     }
     
     public function checkInAction()
     {
+        
+        
        $objAttendance = new Employee_Model_DbTable_Attendance();
        
        $form = new Employee_Form_Attendance();
@@ -25,7 +51,7 @@ class Employee_AttendanceController extends Zend_Controller_Action
            if ($form->isValid($_POST)) {
                 $data = $form->getValues();
                 
-               $objAttendance->addAttendance($data, '1');
+               $objAttendance->addAttendance($data, $this->empId);
            }
          } 
     }
@@ -39,11 +65,14 @@ class Employee_AttendanceController extends Zend_Controller_Action
         
         $this->view->form = $form;
          
+       
+
          if ($this->getRequest()->isPost()) {
             if ($form->isValid($_POST)) {
                 $data = $form->getValues();
                 
-                $objAttendance->updateAttendance($data, '3', '1');
+                $attendanceId = $objAttendance->getAttendanceIdByDate($this->empId);
+                $objAttendance->updateAttendance($data, $attendanceId, $this->empId);
                 
           
             }

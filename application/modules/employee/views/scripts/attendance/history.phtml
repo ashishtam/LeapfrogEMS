@@ -1,0 +1,60 @@
+<?php
+    if(!empty($this->data))
+    {
+?>
+
+<table>
+    
+<tr>
+    <td>Id</td>
+    <td>Date</td>
+    <td>Check In</td>
+    <td>Check In Status</td>
+    <td>Check In Comments</td>
+    <td>Check Out</td>
+    <td>Check Out Status</td>
+    <td>Check Out Comments</td>
+</tr>
+<tr>
+<?php
+        $count = 0;
+        foreach ($this->data as $value)
+        {
+            echo "<tr>";
+            echo "<td>".++$count."</td>";
+            echo "<td>".$value['date']."</td>";
+            echo "<td>".$value['checkin_time']."</td>";
+            echo "<td style='color:".status($value['checkin_status']).";'>".$value['checkin_status']."</td>";
+            echo "<td>".$value['checkin_comments']."</td>";
+            echo "<td>".$value['checkout_time']."</td>";
+            echo "<td style='color:".status($value['checkout_status']).";'>".$value['checkout_status']."</td>";
+            echo "<td>".$value['checkout_comments']."</td>";
+            echo "</tr>";
+        }
+    
+    
+        
+    
+?>
+</tr>
+
+    
+</table>
+<?php
+    }
+    else
+    {
+        echo "<p>No Records Found!!</p>";
+    }
+    
+    function status($status)
+        {
+            if(isset($status) == 'Late')
+                return 'red';
+            else if(isset($status) == 'Early')
+                return 'red';
+            else
+                return 'green';
+        }
+
+?>

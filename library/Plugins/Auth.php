@@ -76,13 +76,12 @@ class Plugins_Auth extends Zend_Controller_Plugin_Abstract {
 ////                                
 //                 }
 
-//                echo $auth->getIdentity()->role_id;
+                               
+                $actionId = $this->getActionId($resource, $this->splitToUpperCase($action));
                 
-                $actionId = $this->getActionId($resource, $action);
-                
-                    $result =  $acl->isAllowed($auth->getIdentity()->role_id,$resource, $actionId);
-                     
-                     return $result;
+                $result =  $acl->isAllowed($auth->getIdentity()->role_id, $resource, $actionId);
+
+                 return $result;
 	}
         
         
@@ -97,11 +96,27 @@ class Plugins_Auth extends Zend_Controller_Plugin_Abstract {
             
             $actionId = $objActions->getActionId($resourceId, $action);
             
-            //print_r($actionId[0]);
+//            print_r($actionId[0]);
+            
             if($actionId)
                 return($actionId[0]['id']);
         }
         
+        
+        function splitToUpperCase($action)
+        {
+            $explode = explode('-', $action);
+            $count = count($explode);
+            $actionName = "";
+            for($i=0; $i<$count; $i++)
+            {
+                if($i>0)
+                    $explode[$i] = ucfirst ($explode[$i]);
+                $actionName .= $explode[$i];
+            }
+            
+            return $actionName;
+        }
 }
 
 ?>
