@@ -43,9 +43,9 @@ class Employee_Model_DbTable_Attendance extends Zend_Db_Table_Abstract
     {
         try
         {
-            echo "<pre>";
-            print_r($data);
-            echo "</pre>";
+//            echo "<pre>";
+//            print_r($data);
+//            echo "</pre>";
             
             $this->update($data, 'id='. $id . ' and emp_id ='. $emp_id);
         }
@@ -63,9 +63,19 @@ class Employee_Model_DbTable_Attendance extends Zend_Db_Table_Abstract
      
         try
         {
-            $result = $this->fetchRow("date='".$currentDate."' AND emp_id=".$empId)->toArray();
+            $result = $this->fetchRow("date='".$currentDate."' AND emp_id=".$empId);
+            $count = count($result);
+    
+            if($count != 0)   
+            {
+                $result = $result->toArray();
+                return $result;
+            }
+            else
+            {
+                return 0;
 
-            return $result['id'];
+            }
         }
         catch(Exception $e)
         {

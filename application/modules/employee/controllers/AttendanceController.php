@@ -39,19 +39,34 @@ class Employee_AttendanceController extends Zend_Controller_Action
     public function checkInAction()
     {
         
-        
        $objAttendance = new Employee_Model_DbTable_Attendance();
        
        $form = new Employee_Form_Attendance();
        $form->checkIn();
        
        $this->view->form = $form;
-        
+
+       $attendanceData = $objAttendance->getAttendanceIdByDate($this->empId);
+       
+        if($attendanceData !=0)
+        {    
+            $this->view->data = $attendanceData;
+            $this->view->status = 'checkin';
+        }   
+        else
+        {
+            $this->view->status = 'none';
+        }
+
         if ($this->getRequest()->isPost()) {
            if ($form->isValid($_POST)) {
                 $data = $form->getValues();
+//                print_r($data);
                 
-               $objAttendance->addAttendance($data, $this->empId);
+                    $objAttendance->addAttendance($data, $this->empId);
+                    
+                    $this->_redirect('/employee/attendance/check-in');
+               
            }
          } 
     }
@@ -65,16 +80,26 @@ class Employee_AttendanceController extends Zend_Controller_Action
         
         $this->view->form = $form;
          
+        $attendanceData = $objAttendance->getAttendanceIdByDate($this->empId);
        
+        if($attendanceData['checkout_status'] != null)
+        {    
+            $this->view->data = $attendanceData;
+            $this->view->status = 'checkout';
+        }   
+        else
+        {
+            $this->view->status = 'none';
+        }
 
          if ($this->getRequest()->isPost()) {
             if ($form->isValid($_POST)) {
                 $data = $form->getValues();
                 
                 $attendanceId = $objAttendance->getAttendanceIdByDate($this->empId);
-                $objAttendance->updateAttendance($data, $attendanceId, $this->empId);
+                $objAttendance->updateAttendance($data, $attendanceId['id'], $this->empId);
                 
-          
+                $this->_redirect('/employee/attendance/check-out');
             }
          } 
     }
@@ -102,6 +127,7 @@ class Employee_AttendanceController extends Zend_Controller_Action
                 $savObj = new Employee_Model_DbTable_LeaveModel;
                 $savObj->saveLeave($result);
         
+                $this->_redirect('/employee/attendance/history');
             }
         }   
     }

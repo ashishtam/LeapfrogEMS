@@ -1,2 +1,17 @@
-<h1>Check In</h1>
-<?php echo $this->form;?>
+
+<?php
+    
+    if($this->status == 'none')
+    {
+        echo "<h1>Check In</h1>";
+        echo $this->form;
+    }
+    else 
+    {
+        echo "<h3 style='font-size: x-large;'>Today <font color='green'>".$this->data['date']."</font>, You are Checked In at <font color='green'>".$this->data['checkin_time']."</font></h3>";
+        echo "<p><b>Status</b>: ".$this->data['checkin_status']."</p>";
+        
+        if($this->data['checkin_status'] == 'Late')
+            echo "<p><b>Reason</b>: ".$this->data['checkin_comments']."</p>";
+    }
+?>
