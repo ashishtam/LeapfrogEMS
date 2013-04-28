@@ -1,0 +1,40 @@
+<h1>Employee Contacts</h1>
+
+<p>
+<?php $data = $this->employeeRecords; ?>
+
+    <table class='table-contacts'>
+        <tr>
+            <td>Id</td>
+            <td>Full Name</td>
+            <td>Designation</td>
+            <td>Email Id</td>
+            <td>Contact</td>  
+            <td>Action</td>
+        </tr>
+    <?php
+
+    foreach ($this->paginator as $value)
+    {
+       echo"<tr>";
+       echo"<td>".$value['id']."</td>
+            <td>".$value['full_name']."</td>
+            <td>".$value['designation']."</td>
+            <td>".$value['email_id']."</td>
+            <td>".$value['contact']."</td>";
+       ?>
+            <td><a href="edit-user/id/<?php echo $value['id']?>">Edit | </a>
+                <a href="delete-user/id/<?php echo $value['id']?>" onclick="return confirm('Are you sure?');">Delete</a></td>
+
+        <?php
+       echo "</tr>";
+    }
+    //    echo "<pre>";
+    //    print_r();
+    //    echo "</pre>";
+    ?>
+    </table>
+<?php 
+ echo $this->paginationControl($this->paginator,'sliding','pagination.phtml');
+?>
+</p>

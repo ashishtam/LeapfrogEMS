@@ -52,7 +52,13 @@ class Admin_IndexController extends Zend_Controller_Action
         foreach ($employeeData as $value) {
             $employeeData[$count++]['designation'] = $objDesignation->getDesignationNameById($value['designation_id']);
         }
-        $this->view->employeeRecords = $employeeData;
+//        $this->view->employeeRecords = $employeeData;
+        $paginator = Zend_Paginator::factory($employeeData);
+        $pageNumber = $this->_getParam('page');       
+        $paginator->setCurrentPageNumber($pageNumber);
+        $paginator->setItemCountPerPage(5);
+        $this->view->paginator = $paginator;
+        
     }
 
         public function profileAction() {
