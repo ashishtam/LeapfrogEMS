@@ -137,16 +137,19 @@
                         cache: false,
                         success: function(data) {
 
-                           // alert(data);
-//                            var check = data.check;
-//                            if (check === 1) {
-//                                alert('success');
-//                            }
-//                            else {
-//                                alert('failure');
-//                            }
+
+                            var check = data;
                             
-                     //       return false;
+                            console.log(check);
+
+                            if (check == 0) {
+                                alert('Success');
+                                window.location.href = '<?php echo $this->baseUrl(); ?>/admin/permission/';
+                            }
+                            else {
+                                alert('Error');
+                            }
+                            
                         }
                     });
 

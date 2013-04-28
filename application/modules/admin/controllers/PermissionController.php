@@ -61,6 +61,8 @@ class Admin_PermissionController extends Zend_Controller_Action
       
     public function editPermissionAction()
     {
+            $flag = 0;
+            
             $info = $this->getRequest()->getPost();
             $this->_helper->layout->disableLayout();
             
@@ -112,7 +114,8 @@ class Admin_PermissionController extends Zend_Controller_Action
                         
                         if(!$result)
                         {
-                            echo "Error Inserting";
+//                            echo "Error Inserting";
+                            $flag = 1;
                         }
                     }
 
@@ -129,15 +132,18 @@ class Admin_PermissionController extends Zend_Controller_Action
                 foreach ($permissionToDelete as $value)
                 {
                     $result = $objPermission->deletePermission($roleId, $resourceId, $value);
-                    if(!$result)
-                    {
-                        echo "Error Deleting";
-                    }
+//                    if(!$result)
+//                    {
+//                        echo "Error Deleting";
+//                        
+//                    }
                 }
             }
             
             
             
+            
+            print Zend_Json_Encoder::encode($flag);
           
     }
     
