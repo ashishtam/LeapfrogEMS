@@ -1,0 +1,21 @@
+
+<table class="table table-condensed">
+    <tr>
+        <td>Name</td>
+        <td>Address</td>
+        <td>DOB</td>
+        <td>Info</td>
+        <td>Image</td>
+    </tr>
+    <?php 
+foreach ($this->user as $row):?>
+    <tr class="success">
+        <td><?php  echo $row['full_name'];?></td>
+        <td><?php echo $row['address'];?></td>
+        <td><?php echo $row['DOB'];?></td>
+        <td><?php echo $row['info'];?></td>
+        <td><img src="/uploads/<?php echo $row['image_name']?>" width="120px" 
+height="70px"></td>
+    </tr>
+    <?php endforeach;?>
+</table>

@@ -8,12 +8,12 @@ class Admin_IndexController extends Zend_Controller_Action
 {
     public function indexAction()
     {
-        $this->_redirect('/admin/index/get-users');
+         $this->_redirect('/admin/index/get-users');
     }
     
     public function addUserAction()
     {
-        $objDesignation = new Employee_Model_DbTable_Designation();
+         $objDesignation = new Employee_Model_DbTable_Designation();
         $dataDesignation = $objDesignation->getDesignation();
         
         $objEmployee = new Employee_Model_DbTable_Employee();
@@ -135,6 +135,14 @@ class Admin_IndexController extends Zend_Controller_Action
         }
     }
     
+    public function listProfileAction()
+    {      
+        $userObj = new Admin_Model_DbTable_Employee();
+        $user = $userObj->getnamebyEid(); 
+        $this->view->user = $user;
+
+    }
+    
     public function editUserAction()
     {
          $form = new Admin_Form_EmployeeEdit();
@@ -190,16 +198,14 @@ class Admin_IndexController extends Zend_Controller_Action
                 $form->populate($userdata); 
             }
         }
-        
     }
     
     public function deleteUserAction()
     {
-  
+//       $id = $this->_getParam('id');
        $id = $this->getRequest()->getParam('id');
 
-       print_r($id);
-       
+      // print_r($id); die;
        $objEmployee = new Admin_Model_DbTable_Employee();
        
        $result = $objEmployee->deleteEmployee($id);
