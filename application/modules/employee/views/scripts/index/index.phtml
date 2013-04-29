@@ -5,7 +5,7 @@
 
     <table class='table-contacts'>
         <tr>
-            <td>Id</td>
+            <td>S.N.</td>
             <td>Full Name</td>
             <td>Designation</td>
             <td>Email Id</td>
@@ -13,10 +13,11 @@
         </tr>
     <?php
 
+    $count = 0;
     foreach($data as $key=>$value)
     {
        echo"<tr>";
-       echo"<td>".$value['id']."</td>
+       echo"<td>".++$count."</td>
             <td>".$value['full_name']."</td>
             <td>".$value['designation']."</td>
             <td>".$value['email_id']."</td>

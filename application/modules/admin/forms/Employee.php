@@ -7,13 +7,13 @@
 
 class Admin_Form_Employee extends Zend_Form
 {
-    public function employeeForm($designationList)
+    public function employeeForm($designationList, $roleList)
     {
         $this->setName('addEmployee')
              ->setMethod('post');
         
         
-       
+        
         //Full Name element
         $name = new Zend_Form_Element_Text('full_name');
         
@@ -71,6 +71,20 @@ class Admin_Form_Employee extends Zend_Form
 
         
         
+        //Role
+        $menuListRoles = array();
+        foreach($roleList as $key=>$value)
+        {  
+            $menuListRoles[$value['id']] = $value['name'];   
+        }
+          
+        $roles = new Zend_Form_Element_Select('role_id');
+        
+        $roles->setLabel('Role:')
+                    ->setMultiOptions($menuListRoles)
+                    ->setRequired(true);      
+
+        
        //submit 
        $submit = new Zend_Form_Element_Submit('submit');
         
@@ -84,6 +98,7 @@ class Admin_Form_Employee extends Zend_Form
         $this->addElement($password);
         $this->addElement($contact);
         $this->addElement($designation);
+        $this->addElement($roles);
         $this->addElement($submit);
         
       

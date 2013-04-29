@@ -8,18 +8,22 @@ class Admin_IndexController extends Zend_Controller_Action
 {
     public function indexAction()
     {
-        
+        $this->_redirect('/admin/index/get-users');
     }
     
     public function addUserAction()
     {
         $objDesignation = new Employee_Model_DbTable_Designation();
         $dataDesignation = $objDesignation->getDesignation();
-               
+        
         $objEmployee = new Employee_Model_DbTable_Employee();
-                
+        
+        $objRole = new Admin_Model_DbTable_Roles();
+        
+        $dataRole = $objRole->getRoles();
+        
         $form = new Admin_Form_Employee();
-        $form->employeeForm($dataDesignation);
+        $form->employeeForm($dataDesignation, $dataRole);
         $this->view->form = $form;
         
           
@@ -35,6 +39,7 @@ class Admin_IndexController extends Zend_Controller_Action
                 
                 $objEmployee->addEmployee($dataEmployee);
                 
+                $this->_redirect('admin/index');
                 
             }
         }
@@ -45,13 +50,21 @@ class Admin_IndexController extends Zend_Controller_Action
     {
         $objEmployee = new Employee_Model_DbTable_Employee();
         $objDesignation = new Employee_Model_DbTable_Designation();
+        $objRole = new Admin_Model_DbTable_Roles();
 
+        
         $employeeData = $objEmployee->getRecords();
-        //echo '<pre>';        print_r($employeeData);die;
+        
+//        echo '<pre>';        print_r($employeeData);die;
         $count = 0;
         foreach ($employeeData as $value) {
-            $employeeData[$count++]['designation'] = $objDesignation->getDesignationNameById($value['designation_id']);
+            $employeeData[$count]['designation'] = $objDesignation->getDesignationNameById($value['designation_id']);
+            $employeeData[$count]['role'] = $objRole->getRoleNameById($value['role_id']);
+            
+            $count++;
         }
+        
+//                echo '<pre>';        print_r($employeeData);die;
 //        $this->view->employeeRecords = $employeeData;
         $paginator = Zend_Paginator::factory($employeeData);
         $pageNumber = $this->_getParam('page');       
@@ -125,6 +138,7 @@ class Admin_IndexController extends Zend_Controller_Action
     public function editUserAction()
     {
          $form = new Admin_Form_EmployeeEdit();
+         
 
         $this->view->form = $form; 
         if ($this->getRequest()->isPost()) { //die;
@@ -136,6 +150,7 @@ class Admin_IndexController extends Zend_Controller_Action
                 $id = $this->getRequest()->getParam('id');  
 //                print_r($id);die;
                 $data = array(
+                    'role_id' =>$_POST['role_id'],
                     'full_name'=>$_POST['full_name'],
                     'email_id'=>$_POST['email_id'],
                     'contact'=>$_POST['contact'],
@@ -166,7 +181,11 @@ class Admin_IndexController extends Zend_Controller_Action
                 $objDesignation = new Employee_Model_DbTable_Designation();
                 $userdata['designation'] = $objDesignation->getDesignationNameById($userdata['designation_id']);
                 $dataDesignation = $objDesignation->getDesignation();
-                $form->employeeEditForm($dataDesignation);
+                 
+                $objRole = new Admin_Model_DbTable_Roles();
+                 $dataRole = $objRole->getRoles();
+        
+                $form->employeeEditForm($dataDesignation, $dataRole);
                 // print_r($userdata);die;
                 $form->populate($userdata); 
             }
@@ -176,10 +195,11 @@ class Admin_IndexController extends Zend_Controller_Action
     
     public function deleteUserAction()
     {
-//       $id = $this->_getParam('id');
+  
        $id = $this->getRequest()->getParam('id');
 
-      // print_r($id); die;
+       print_r($id);
+       
        $objEmployee = new Admin_Model_DbTable_Employee();
        
        $result = $objEmployee->deleteEmployee($id);

@@ -49,12 +49,19 @@
     
     function status($status)
         {
-            if(isset($status) == 'Late')
+            if($status == 'Late')
                 return 'red';
-            else if(isset($status) == 'Early')
+            else if($status == 'Early')
                 return 'red';
             else
                 return 'green';
         }
 
 ?>
+
+<hr>
+<p>
+<?php 
+ echo $this->paginationControl($this->data,'sliding','pagination.phtml');
+?>
+</p>

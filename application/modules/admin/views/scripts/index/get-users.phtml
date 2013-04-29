@@ -3,13 +3,14 @@
 <p>
 <?php $data = $this->employeeRecords; ?>
 
-    <table class='table-contacts'>
+    <table class='table-contacts'  style="width: 800px;">
         <tr>
             <td>Id</td>
             <td>Full Name</td>
             <td>Designation</td>
             <td>Email Id</td>
             <td>Contact</td>  
+            <td>Role</td>
             <td>Action</td>
         </tr>
     <?php
@@ -21,10 +22,12 @@
             <td>".$value['full_name']."</td>
             <td>".$value['designation']."</td>
             <td>".$value['email_id']."</td>
-            <td>".$value['contact']."</td>";
+            <td>".$value['contact']."</td>
+            <td>".$value['role']."</td>";
+            
        ?>
-            <td><a href="edit-user/id/<?php echo $value['id']?>">Edit | </a>
-                <a href="delete-user/id/<?php echo $value['id']?>" onclick="return confirm('Are you sure?');">Delete</a></td>
+            <td><a href="<?php echo $this->baseUrl('admin/index/edit-user/id/'.$value['id']); ?>">Edit | </a>
+                <a href="<?php echo $this->baseUrl('admin/index/delete-user/id/'.$value['id']); ?>" onclick="return confirm('Are you sure?');">Delete</a></td>
 
         <?php
        echo "</tr>";
@@ -34,6 +37,8 @@
     //    echo "</pre>";
     ?>
     </table>
+
+<hr style="color: gainsboro;">
 <?php 
  echo $this->paginationControl($this->paginator,'sliding','pagination.phtml');
 ?>

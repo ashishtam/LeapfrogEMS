@@ -22,4 +22,12 @@ class Admin_Model_DbTable_Roles extends Zend_Db_Table_Abstract
             echo $e->getMessage();
         }
     }
+    
+    public function getRoleNameById($id)
+    {
+         $query = $this->fetchRow($this->select()
+                        ->where('id = '.$id))->toArray();
+                        
+        return $query['name'];
+    }
 }

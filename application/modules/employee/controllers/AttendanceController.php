@@ -18,7 +18,7 @@ class Employee_AttendanceController extends Zend_Controller_Action
     
     public function indexAction()
     {
-    
+        $this->_redirect('/employee/attendance/history');
     }
     
     public function historyAction()
@@ -32,7 +32,11 @@ class Employee_AttendanceController extends Zend_Controller_Action
         
 //        print_r($dataAttendance);
         
-        $this->view->data = $dataAttendance;
+         $paginator = Zend_Paginator::factory($dataAttendance);
+        $pageNumber = $this->_getParam('page');       
+        $paginator->setCurrentPageNumber($pageNumber);
+        $paginator->setItemCountPerPage(10);
+        $this->view->data = $paginator;
         
     }
     

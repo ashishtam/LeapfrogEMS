@@ -29,10 +29,5 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         Zend_Controller_Action_HelperBroker::addHelper(new Helper_Asset());
     }
     
-
-    protected function _initTimeZone() {
-        date_default_timezone_set('Asia/kathmandu');
-    }
-
       
 }

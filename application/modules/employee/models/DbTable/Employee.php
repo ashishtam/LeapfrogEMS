@@ -18,7 +18,7 @@ class Employee_Model_DbTable_Employee extends Zend_Db_Table_Abstract
     
     public function getRecords()
     {
-        $result = $this->fetchAll()->toArray();
+        $result = $this->fetchAll($this->select()->order('full_name ASC'))->toArray();
         return $result;
     }
        
