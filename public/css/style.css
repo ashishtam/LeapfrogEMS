@@ -12,6 +12,12 @@ body{
 
 }
 
+h1{
+    font-size: 1.4em;
+    color: #333333;
+    text-decoration: underline;
+}
+
 h2{
 	font-size: 1em;
 }
@@ -40,6 +46,9 @@ p {
 	float: left;
 	border:none;
 	/*background-color: transparent;*/	
+        font-size: x-large;
+        font-weight: bold;
+        color: #ef443d;
 }
 
 
@@ -75,6 +84,7 @@ p {
 	margin:auto;
         min-height: 450px;
 	height:auto;
+        display: block;
 }
 
 
@@ -108,9 +118,10 @@ p {
 	font-weight: bold;
 }
 
-
-.content{
+/**=====================Main Content===============*/
+.main-content{
 	width:745px;
+        min-height: 400px;
 	display:inline-block;
 	position:relative;
 	float:right;
@@ -120,63 +131,112 @@ p {
 	margin-top: 5px;
 }
 
-.content p ,.content li{
+.main-content p ,.main-content li{
 	font-family: Century Gothic, sans-serif;
 	font-size: 0.9em;
 	color:#555;
 }
 
-.content p{
+.main-content p{
 	margin-bottom: 40px;
 }
 
-.content h2{
+.main-content h2{
 	font-family: Century Gothic, sans-serif;
 	font-size: 1.2em;
 	color:#6b6b6b;
 }
 
-.content img{
+.main-content img{
 	float:left; border:1px solid #fff; 
 	margin: 0px 5px 1px 5px;
 	box-shadow: 0px 3px 3px #999999;
 
 }
 
-.content h3{
+.main-content h3{
 	font-family: Century Gothic, sans-serif;
 	font-size: 0.98em;
 	color:#6b6b6b;
 }
 
-.content a{
+.main-content a{
 	text-decoration: none;
 	color: #6b6b6b;
 }
 
-.content table{
+.main-content table{
 	border: 0px solid #6b6b6b;
 
 }
 
-.content tr{
+.table-contacts{
+    width: 750px;
+}
+
+.main-content tr{
 	background-color: #e8e8e8;
 }
 
-.content tr:first-child{
+.main-content tr:first-child{
 	background-color: #dcddde;
 	font-weight: bold;
 }
 
-.content td{
+.main-content td{
 	text-align: center;
+        height: 30px;
+        text-transform: capitalize;
 }
 
+/*==========================================*/
 
+/**===============button form===============***/
+.button-form {
+     border-radius: 0.5em 0.5em 0.5em 0.5em;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    display: inline-block;
+    font: 12px/100% Century Gothic, sans-serif;
+    margin: 0 2px;
+    outline: medium none;
+    padding: 0.5em 2em 0.55em;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+    vertical-align: baseline; 
+}
+.button-form:hover {
+	text-decoration: none;
+}
+.button-form:active {
+	position: relative;
+	top: 1px;
+}
+
+.white {
+    background: -moz-linear-gradient(center top , #FFFFFF, #EDEDED) repeat scroll 0 0 transparent;
+    border: 1px solid #B7B7B7;
+    color: #606060;
+}
+.white:hover {
+    background: -moz-linear-gradient(center top , #FFFFFF, #DBD6D6) repeat scroll 0 0 transparent;
+}
+.white:active {
+    background: -moz-linear-gradient(center top , #EDEDED, #FFFFFF) repeat scroll 0 0 transparent;
+    color: #999999;
+}
+
+/*===============================================**/
+
+
+/**==============Copyright=====================*/
 #copyright{
+        margin-top: 25px;
 	height:25px;
 	/*background-color:#3e5a71;*/
 	text-align:center;
+        display: block;
 	border-top: 1px dotted gainsboro;
 	color: #999999;
 	font-family: Century Gothic, sans-serif;
