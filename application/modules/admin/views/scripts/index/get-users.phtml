@@ -12,6 +12,7 @@
             <td>Contact</td>  
             <td>Role</td>
             <td>Action</td>
+            <td>CV</td>
         </tr>
     <?php
 
@@ -28,6 +29,8 @@
        ?>
             <td><a href="<?php echo $this->baseUrl('admin/index/edit-user/id/'.$value['id']); ?>">Edit | </a>
                 <a href="<?php echo $this->baseUrl('admin/index/delete-user/id/'.$value['id']); ?>" onclick="return confirm('Are you sure?');">Delete</a></td>
+                
+            <td><a href="<?php echo $this->baseUrl('admin/index/list-profile/id/'.$value['id']); ?>">View</a></td>
 
         <?php
        echo "</tr>";

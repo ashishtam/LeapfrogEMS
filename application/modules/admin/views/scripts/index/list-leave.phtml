@@ -1,0 +1,25 @@
+<?php
+    $data = $this->data;
+?>
+     <table>
+            <tr>
+                <td>Id</td>
+                <td>Employee</td>
+                <td>Leave From Date</td>
+                <td>Leave To Date</td>
+                <td>Reason for Leave</td>
+            </tr>
+   <?php
+        foreach($data as $value)
+        {
+            echo "<tr>";
+            echo "<td>".$value['id']."</td>";
+            echo "<td>".$value['name']."</td>";
+            echo "<td>".$value['from_date']."</td>";
+            echo "<td>".$value['to_date']."</td>";
+            echo "<td>".$value['reason']."</td>";
+            echo "</tr>";
+         }
+    ?>
+   </table>
+    

@@ -8,12 +8,17 @@ class Admin_IndexController extends Zend_Controller_Action
 {
     public function indexAction()
     {
-         $this->_redirect('/admin/index/get-users');
+        $this->_redirect('/admin/index/get-users');
+    }
+    
+    public function homeAction()
+    {
+        
     }
     
     public function addUserAction()
     {
-         $objDesignation = new Employee_Model_DbTable_Designation();
+        $objDesignation = new Employee_Model_DbTable_Designation();
         $dataDesignation = $objDesignation->getDesignation();
         
         $objEmployee = new Employee_Model_DbTable_Employee();
@@ -74,74 +79,7 @@ class Admin_IndexController extends Zend_Controller_Action
         
     }
 
-        public function profileAction() {
-        $form = new Admin_Form_ProfileForm();
-        $this->view->form = $form;
-
         
-        if ($this->getRequest()->isPost()) {
-            $formData = $this->getRequest()->getPost();
-
-            if ($form->isValid($formData)) { 
-
-                $adapter = new Zend_File_Transfer_Adapter_Http();
-                $info = $adapter->getFileInfo(); 
-
-                $uploadPath = $_SERVER['DOCUMENT_ROOT'] . '/uploads'; 
-                try {
-                    
-                    $adapter->setDestination($uploadPath);  
-                    $adapter->receive();
-                
-                } catch (Zend_File_Transfer_Exception $e) {
-                    $e->getMessage();
-                }
-               
- 
-                
-                $auth = Zend_Auth::getInstance();
-                $identity = $auth->getIdentity();
-                $values['emp_id'] = $identity->id;
-                $values['address'] = $_POST['address'];
-      
-                $year=$_POST['DisplayUntil_year'];
-                            
-                $month = sprintf("%02s", $_POST['DisplayUntil_month']);
-                $day = sprintf("%02s", $_POST['DisplayUntil_day']);
-                                  
-                
-                $values['DOB'] = $year.'-'.$month.'-'.$day;
-                
-                $values['info'] = $_POST['info'];
-                
-                $values['image_name'] = $info['image_name']['name']; //print_r($values);die;
-                // echo $values['photo_name']; die;
-                $Savedata = new Admin_Model_DbTable_ProfileModel();
-
-                $check = $Savedata->insert($values);              // echo 'asd';die;
-                if ($check) {
-                    echo 'Profile saved successfully';
-                    exit;
-//                    $this->_helper->redirector->gotoRoute(array
-//                        ('controller' => 'cms',
-//                        'action' => 'showimages'));
-                } else {
-                    echo 'Insertion error';
-                    die;
-                }
-            } else {
-                echo 'Invalid form data';
-            }
-        }
-    }
-    
-    public function listProfileAction()
-    {      
-        $userObj = new Admin_Model_DbTable_Employee();
-        $user = $userObj->getnamebyEid(); 
-        $this->view->user = $user;
-
-    }
     
     public function editUserAction()
     {
@@ -198,14 +136,16 @@ class Admin_IndexController extends Zend_Controller_Action
                 $form->populate($userdata); 
             }
         }
+        
     }
     
     public function deleteUserAction()
     {
-//       $id = $this->_getParam('id');
+  
        $id = $this->getRequest()->getParam('id');
 
-      // print_r($id); die;
+       print_r($id);
+       
        $objEmployee = new Admin_Model_DbTable_Employee();
        
        $result = $objEmployee->deleteEmployee($id);
@@ -217,5 +157,35 @@ class Admin_IndexController extends Zend_Controller_Action
            
        }
        
-}}
+    }
     
+    public function listProfileAction()
+    {
+
+//        $id = $this->getRequest->getParam('id');
+        $id = $this->_getParam('id');
+     
+        $userObj = new Employee_Model_DbTable_Employee();
+        $user = $userObj->getnamebyEid($id); 
+        $this->view->user = $user;
+
+    }
+    
+    
+    public function listLeaveAction()
+    {
+        $objLeave = new Employee_Model_DbTable_LeaveModel();
+        $objEmployee = new Employee_Model_DbTable_Employee();
+        
+        $data = $objLeave->fetchAll()->toArray();
+        
+        $count = 0;
+        foreach ($data as $value)
+        {
+            $data[$count++]['name'] = $objEmployee->getName($value['emp_id']);
+        }
+        
+        $this->view->data = $data;
+    }
+    
+}

@@ -1,7 +1,11 @@
 <?php
 Class Front_IndexController extends Zend_Controller_Action
 {
-     
+    public function init()
+    {
+        
+    }
+    
     public function indexAction()
     {
         //echo 'sdfdsf';  die;
@@ -30,6 +34,11 @@ Class Front_IndexController extends Zend_Controller_Action
     
     public function loginAction()
     {
+        $auth = Zend_Auth::getInstance();
+        
+        if($auth->hasIdentity())
+            $this->_redirect ('/employee/index');
+        
         //Zend_Layout::getMvcInstance()->setLayout('layout');
         $form = new Front_Form_LoginForm;
 

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 24, 2013 at 10:20 PM
+-- Generation Time: May 01, 2013 at 07:43 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `Actions` (
   `resource_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `resource_id` (`resource_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
 
 --
 -- Dumping data for table `Actions`
@@ -60,7 +60,15 @@ INSERT INTO `Actions` (`id`, `name`, `resource_id`) VALUES
 (17, 'about', 6),
 (18, 'logout', 6),
 (19, 'login', 6),
-(20, 'index', 7);
+(20, 'index', 7),
+(21, 'getlist', 3),
+(22, 'history', 5),
+(23, 'getUsers', 2),
+(24, 'listProfile', 2),
+(25, 'listLeave', 2),
+(26, 'listProfile', 4),
+(27, 'editProfile', 4),
+(28, 'home', 2);
 
 -- --------------------------------------------------------
 
@@ -80,16 +88,14 @@ CREATE TABLE IF NOT EXISTS `Attendance` (
   `checkout_comments` longtext,
   PRIMARY KEY (`id`),
   KEY `emp_id` (`emp_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `Attendance`
 --
 
 INSERT INTO `Attendance` (`id`, `emp_id`, `date`, `checkin_time`, `checkout_time`, `checkin_status`, `checkout_status`, `checkin_comments`, `checkout_comments`) VALUES
-(1, 1, '2013-04-23', '08:12:05', NULL, 'On Time', NULL, NULL, NULL),
-(2, 1, '0000-00-00', '11:21:00', NULL, 'Late', NULL, 'I was sick', NULL),
-(3, 1, '2013-04-23', '11:32:40', '13:06:03', 'Late', 'Early', 'i was on date', 'xsfadklf;jdsa');
+(1, 1, '2013-04-25', '08:46:39', '15:46:44', 'On Time', 'Early', NULL, 'I have some work at home.');
 
 -- --------------------------------------------------------
 
@@ -106,7 +112,14 @@ CREATE TABLE IF NOT EXISTS `CV_Info` (
   `image_name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `emp_id` (`emp_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `CV_Info`
+--
+
+INSERT INTO `CV_Info` (`id`, `emp_id`, `address`, `DOB`, `info`, `image_name`) VALUES
+(1, 1, 'fjasdljf', '1940-01-01', '<p>adlskfjsasdfkjf adsjlfdsajfdlf</p>\r\n', 'ashish.JPG');
 
 -- --------------------------------------------------------
 
@@ -148,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `Employee` (
   UNIQUE KEY `email_id` (`email_id`),
   KEY `designation_id` (`designation_id`),
   KEY `role_id` (`role_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `Employee`
@@ -159,9 +172,11 @@ INSERT INTO `Employee` (`id`, `role_id`, `full_name`, `email_id`, `password`, `c
 (2, 3, 'ojash dahal', 'ojashdahal@lftechnology.com', 'a5b4c15152e100c43c6dfd97bb45dd3f', '9841023233', 1),
 (3, 3, 'shiv kumar sah', 'shivkumarsha@lftechnology.com', '671fc86500ae5dd534f859e4483354fe', '9841123456', 1),
 (4, 2, 'kiran regmi', 'kiranregmi@lftechnology.com', 'b1a5b64256e27fa5ae76d62b95209ab3', '9841123456', 2),
-(6, 3, 'subash poudyal', 'subashpoudyal@lftechnology.com', 'b4caefa3d450d0e36e183160d17aba24', '9841123456', 1),
+(6, 3, 'subash poudyal', 'subashpoudyal@lftechnology.com', 'b4caefa3d450d0e36e183160d17aba24', '9841784648', 1),
 (7, 3, 'Alina Shakya', 'alinashakya@lftechnology.com', '914a23f72f590809d3fe431573ecb71f', '9841123456', 1),
-(8, 3, 'Sudip Pudasaini', 'sudippudasaini@lftechnology.com', '550bbf0991fd493d1afaa2bdd246af6a', '9841123456', 1);
+(8, 3, 'Sudip Pudasaini', 'sudippudasaini@lftechnology.com', '550bbf0991fd493d1afaa2bdd246af6a', '9841123456', 1),
+(10, 2, 'Raju Gautam', 'rajugautam@lftechnology.com', '03c017f682085142f3b60f56673e22dc', '9841123456', 4),
+(11, 2, 'harry', 'harry@lftechnology.com', '3b87c97d15e8eb11e51aa25e9a5770e9', '9841123456', 1);
 
 -- --------------------------------------------------------
 
@@ -177,7 +192,15 @@ CREATE TABLE IF NOT EXISTS `Leave` (
   `reason` longtext NOT NULL,
   PRIMARY KEY (`id`),
   KEY `emp_id` (`emp_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `Leave`
+--
+
+INSERT INTO `Leave` (`id`, `emp_id`, `from_date`, `to_date`, `reason`) VALUES
+(1, 1, '2013-04-27', '2013-04-30', 'going into party'),
+(2, 1, '2013-04-30', '2013-04-30', 'fsgfsdgs');
 
 -- --------------------------------------------------------
 
@@ -194,7 +217,7 @@ CREATE TABLE IF NOT EXISTS `Permissions` (
   KEY `resource_id` (`resource_id`),
   KEY `role_id` (`role_id`),
   KEY `action_id` (`action_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32 ;
 
 --
 -- Dumping data for table `Permissions`
@@ -206,7 +229,21 @@ INSERT INTO `Permissions` (`id`, `role_id`, `resource_id`, `action_id`) VALUES
 (3, 3, 5, 14),
 (4, 3, 5, 15),
 (5, 2, 1, 1),
-(7, 2, 2, 3);
+(7, 2, 2, 3),
+(11, 3, 6, 18),
+(12, 2, 3, 6),
+(13, 2, 3, 8),
+(14, 3, 5, 22),
+(15, 2, 2, 5),
+(17, 2, 4, 11),
+(18, 2, 3, 7),
+(19, 2, 5, 13),
+(21, 3, 4, 11),
+(22, 2, 3, 9),
+(26, 2, 6, 16),
+(28, 2, 6, 18),
+(30, 2, 6, 17),
+(31, 2, 6, 19);
 
 -- --------------------------------------------------------
 
@@ -295,9 +332,9 @@ ALTER TABLE `Leave`
 -- Constraints for table `Permissions`
 --
 ALTER TABLE `Permissions`
-  ADD CONSTRAINT `Permissions_ibfk_3` FOREIGN KEY (`action_id`) REFERENCES `Actions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `Permissions_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `Roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `Permissions_ibfk_2` FOREIGN KEY (`resource_id`) REFERENCES `Resources` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `Permissions_ibfk_2` FOREIGN KEY (`resource_id`) REFERENCES `Resources` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Permissions_ibfk_3` FOREIGN KEY (`action_id`) REFERENCES `Actions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -1,13 +1,15 @@
-<?php
-        echo $this->headScript()->appendFile('/ckeditor/ckeditor.js');
-        $identity = Zend_Auth::getInstance()->getIdentity();
-?>
-<h4> Current user:: <?php echo $identity->full_name; ?> </h4><h5>Please create your detail profile!!</h5>
 
 <?php
-    echo $this->form;
+        echo $this->headScript()->appendFile('/ckeditor/ckeditor.js');
 ?>
-<!-- to embed ckeditor in the textarea whose id is 'pagecontent'-->
+<div style="float:right;"><p><img src="/uploads/<?php echo $this->imageName; ?>" width="120px" 
+height="70px"></p>
+</div>
+
+<div>
+<?php echo $this->form; ?>
+</div>
+
 <script type="text/javascript">
 
     CKEDITOR.replace('info', {

@@ -82,8 +82,7 @@ class Employee_Form_ProfileForm extends Zend_Form {
         // limits the filesize on the client side
         $image_name->addValidator('Count', false, 1);                // ensure only 1 file
         $image_name->addValidator('Size', false, 10240000);            // limit to 10 meg
-        $image_name->addValidator('Extension', false, 'jpg,jpeg,png,gif')
-                ->setRequired(TRUE); // only JPEG, PNG, and GIFs
+        $image_name->addValidator('Extension', false, 'jpg,jpeg,png,gif'); // only JPEG, PNG, and GIFs
         
 // create submit button
         $submit = new Zend_Form_Element_Submit(
